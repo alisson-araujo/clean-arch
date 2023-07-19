@@ -6,6 +6,7 @@ from .user_repository import UserRepository
 db_connection_handler = DBConnectionHandler()
 connection = db_connection_handler.get_engine().connect()
 
+
 @pytest.mark.skip(reason="Sensitive test")
 def test_insert_user():
     mocked_first_name = "Homer"
@@ -20,7 +21,9 @@ def test_insert_user():
         WHERE first_name='{}'
         AND last_name='{}'
         AND age='{}';""".format(
-        mocked_first_name, mocked_last_name, mocked_age,
+        mocked_first_name,
+        mocked_last_name,
+        mocked_age,
     )
     response = connection.execute(text(query))
     registry = response.fetchall()[0]
@@ -33,3 +36,21 @@ def test_insert_user():
 
     connection.execute(text(f"""DELETE FROM users WHERE id = {registry.id}"""))
     connection.commit()
+
+
+def test_select_user():
+    mocked_first_name = "Tite"
+    mocked_last_name = "Kubo"
+    mocked_age = 56
+
+    query = """
+        INSERT INTO USERS (first_name, last_name, age) VALUES ('{}', '{}', '{}')
+    """.format(
+        mocked_first_name, mocked_last_name, mocked_age
+    )
+
+    connection.execute(text(query))
+    connection.commit()
+
+    user_repository = UserRepository()
+    user_repository.select_user(mocked_first_name)
