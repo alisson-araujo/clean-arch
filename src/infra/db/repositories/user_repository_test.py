@@ -44,7 +44,7 @@ def test_select_user():
     mocked_age = 56
 
     query = """
-        INSERT INTO USERS (first_name, last_name, age) VALUES ('{}', '{}', '{}')
+        INSERT INTO users (first_name, last_name, age) VALUES ('{}', '{}', '{}')
     """.format(
         mocked_first_name, mocked_last_name, mocked_age
     )
@@ -53,4 +53,8 @@ def test_select_user():
     connection.commit()
 
     user_repository = UserRepository()
-    user_repository.select_user(mocked_first_name)
+    response = user_repository.select_user(mocked_first_name)
+
+    assert response[0].first_name == mocked_first_name
+    assert response[0].last_name == mocked_last_name
+    assert response[0].age == mocked_age
