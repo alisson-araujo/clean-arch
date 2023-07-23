@@ -1,6 +1,7 @@
 from src.infra.db.tests.users_repository import UserRepositorySpy
 from .user_register import UserRegister
 
+
 def test_register():
     first_name = "Lucas"
     last_name = "Santos"

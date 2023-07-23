@@ -37,6 +37,7 @@ def test_insert_user():
     connection.execute(text(f"""DELETE FROM users WHERE id = {registry.id}"""))
     connection.commit()
 
+
 @pytest.mark.skip(reason="Sensitive test")
 def test_select_user():
     mocked_first_name = "Tite"

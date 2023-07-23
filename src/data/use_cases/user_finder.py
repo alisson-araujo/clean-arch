@@ -13,7 +13,8 @@ class UserFinder(UserFinderInterface):
 
         users = self.__search_user(first_name)
 
-        return {"type": "users", "count": len(users), "attributes": users}
+        response = self.__format_response(users)
+        return response
 
     @classmethod
     def __validate_name(cls, first_name: str) -> None:
@@ -28,3 +29,18 @@ class UserFinder(UserFinderInterface):
         if users == []:
             raise Exception("User not found")
         return users
+
+    def __format_response(cls, users: List[Users]) -> Dict:
+        attributes = []
+        for user in users:
+            attributes.append(
+                {
+                    "first_name": user.first_name,
+                    "last_name": user.last_name,
+                    "age": user.age,
+                }
+            )
+
+        response = {"type": "Users", "count": len(users), "attributes": attributes}
+
+        return response
