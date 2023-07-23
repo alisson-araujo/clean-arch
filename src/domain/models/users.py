@@ -1,6 +1,7 @@
-#pylint: disable=redefined-builtin
-#pylint: disable=invalid-name
-#pylint: disable=missing-class-docstring
+# pylint: disable=redefined-builtin
+# pylint: disable=invalid-name
+# pylint: disable=missing-class-docstring
+
 
 class Users:
     def __init__(self, id: int, first_name: str, last_name: str, age: int):
