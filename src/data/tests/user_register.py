@@ -13,5 +13,9 @@ class UserRegisterSpy:
         return {
             "type": "user",
             "count": 1,
-            "attributes": {"first_name": first_name, "last_name": last_name, "age": age},
+            "attributes": {
+                "first_name": first_name,
+                "last_name": last_name,
+                "age": age,
+            },
         }

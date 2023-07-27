@@ -1,5 +1,6 @@
 from src.domain.use_cases.user_register import UserRegister as UserRegisterInterface
 from src.data.interfaces.users_repository import UsersRepositoryInterface
+from src.errors.types import HttpBadRequestError
 from typing import Dict
 
 
@@ -18,10 +19,10 @@ class UserRegister(UserRegisterInterface):
     @classmethod
     def __validate_name(cls, first_name: str) -> None:
         if not first_name.isalpha():
-            raise Exception("Invalid name")
+            raise HttpBadRequestError("Invalid name")
 
         if len(first_name) > 18:
-            raise Exception("Name is too long")
+            raise HttpBadRequestError("Name is too long")
 
     def __registry_user_informations(
         self, first_name: str, last_name: str, age: int

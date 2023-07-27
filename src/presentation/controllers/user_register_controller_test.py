@@ -5,11 +5,8 @@ from src.presentation.http_types.http_reponse import HttpResponse
 
 class HttpRequestMock:
     def __init__(self) -> None:
-        self.body = {
-            "first_name": "teste",
-            "last_name": "teste",
-            "age": 20
-        }
+        self.body = {"first_name": "teste", "last_name": "teste", "age": 20}
+
 
 def test_handle():
     http_request_mock = HttpRequestMock()

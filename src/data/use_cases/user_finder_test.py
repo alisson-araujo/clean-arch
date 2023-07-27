@@ -10,7 +10,7 @@ def test_find():
 
     response = user_finder.find(first_name)
 
-    assert response["type"] == "users"
+    assert response["type"] == "Users"
 
 
 def test_find_error_valid_name():
